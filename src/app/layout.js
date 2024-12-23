@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/wrapper/theme-provider';
 import './globals.css';
-import { THEMES_LIST } from '@/configs/themes';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,7 +27,17 @@ export default function RootLayout({ children }) {
           attribute="class"
           defaultTheme="light"
           enableSystem
-          themes={['dark', 'light', 'blue', 'red', 'green', 'purple', 'pink']}
+          themes={[
+            'dark',
+            'light',
+            'blue',
+            'red',
+            'green',
+            'purple',
+            'pink',
+            'orange',
+            'yellow',
+          ]}
         >
           {children}
         </ThemeProvider>

@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { ThemeChanger } from '@/components/ui/theme-changer';
+import { ThemeDemo } from '@/components/ui/theme-demo';
 
 export default function Home() {
-  return <ThemeChanger />;
+  return <ThemeDemo />;
 }

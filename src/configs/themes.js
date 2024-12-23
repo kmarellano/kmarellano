@@ -6,6 +6,8 @@ export const COLOR_THEMES = {
   GREEN: 'green',
   PURPLE: 'purple',
   PINK: 'pink',
+  ORANGE: 'orange',
+  YELLOW: 'yellow',
   SYSTEM: 'system',
 };
 

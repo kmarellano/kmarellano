@@ -11,26 +11,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
-const ThemeChanger = () => {
+const ThemeChanger = ({ className }) => {
   const { setTheme } = useTheme();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Palette className="absolute h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {Object.entries(COLOR_THEMES).map(([key, val]) => (
-          <DropdownMenuItem onClick={() => setTheme(val)} key={key}>
-            {capitalizeFirstLetter(key)}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className={cn('relative', className)}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Palette className="absolute h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          {Object.entries(COLOR_THEMES).map(([key, val]) => (
+            <DropdownMenuItem onClick={() => setTheme(val)} key={key}>
+              {capitalizeFirstLetter(key)}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 };
 
