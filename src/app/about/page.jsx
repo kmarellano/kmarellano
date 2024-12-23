@@ -12,7 +12,7 @@ const About = () => {
   return (
     <React.Fragment>
       {/* <NavHeader /> */}
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white h-screen snap-y snap-mandatory overflow-y-scroll">
         <HeroSection />
         <AboutSection />
         <PortfolioSection />
