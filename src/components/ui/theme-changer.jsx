@@ -20,8 +20,8 @@ const ThemeChanger = ({ className }) => {
     <div className={cn('fixed bottom-4 right-4 z-50', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Palette className="h-[1.2rem] w-[1.2rem]" />
+          <Button variant="outline" size="icon" className="bg-muted w-12 h-12">
+            <Palette />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>

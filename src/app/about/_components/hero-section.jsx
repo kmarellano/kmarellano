@@ -45,7 +45,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative group h-svh hover:cursor-pointer">
+        <div className="relative group h-svh sm:h-[46rem] hover:cursor-pointer">
           <TooltipProvider delayDuration={250}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -72,6 +72,7 @@ export function HeroSection() {
                 side="top"
                 align="end"
                 sideOffset={70}
+                sticky="always"
                 className="bg-transparent text-accent-foreground p-2 rounded text-2xl"
               >
                 Hello!
