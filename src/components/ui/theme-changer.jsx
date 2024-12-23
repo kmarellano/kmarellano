@@ -17,11 +17,11 @@ const ThemeChanger = ({ className }) => {
   const { setTheme } = useTheme();
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn('fixed bottom-4 right-4 z-50', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">
-            <Palette className="absolute h-[1.2rem] w-[1.2rem]" />
+            <Palette className="h-[1.2rem] w-[1.2rem]" />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
