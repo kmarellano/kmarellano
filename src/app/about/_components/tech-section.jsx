@@ -50,7 +50,7 @@ export function TechnicalSection() {
               <Badge
                 key={skill}
                 variant="outline"
-                className="text-xl border-primary"
+                className="text-lg border-primary"
               >
                 {skill}
               </Badge>

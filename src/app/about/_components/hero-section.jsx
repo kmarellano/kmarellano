@@ -14,7 +14,7 @@ import {
 export function HeroSection() {
   return (
     <SectionWrapper className="flex bg-background min-h-svh" id="home">
-      <div className="grid md:grid-cols-2 gap-8 items-center">
+      <main className="grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-6">
           <div className="flex flex-col gap-2">
             <span className="text-primary text-2xl">Hi, I am</span>
@@ -45,7 +45,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative group h-svh sm:h-[46rem] hover:cursor-pointer">
+        <div className="relative group h-svh sm:h-[46rem] hover:cursor-grab">
           <TooltipProvider delayDuration={250}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -63,7 +63,7 @@ export function HeroSection() {
                     alt="Profile Image"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain drop-shadow-img absolute top-0 left-0 group-hover:translate-y-[-200%] group-hover:hidden"
+                    className="object-contain drop-shadow-img group-hover:hidden"
                     priority
                   />
                 </div>
@@ -80,7 +80,7 @@ export function HeroSection() {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </div>
+      </main>
     </SectionWrapper>
   );
 }

@@ -1,5 +1,11 @@
 import React from 'react';
-import { HeroSection, TechnicalSection, WorkSection } from './_components';
+import {
+  HeroSection,
+  TechnicalSection,
+  WorkSection,
+  BlogSection,
+  PersonalSection,
+} from './_components';
 
 const About = () => {
   return (
@@ -8,6 +14,8 @@ const About = () => {
         <HeroSection />
         <TechnicalSection />
         <WorkSection />
+        <BlogSection />
+        <PersonalSection />
       </main>
     </React.Fragment>
   );
