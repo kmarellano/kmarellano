@@ -109,7 +109,7 @@ export function WorkSection() {
         {
           name: 'Database Operation Migration for Private Bank',
           description:
-            'An application designed to replace end-of-day SQL update scripts with MongoDB real-time triggers, improving data processing speed and efficiency',
+            'An application designed to replace end-of-day SQL update scripts with MongoDB real-time triggers, improving data processing speed and efficiency.',
           techStack: ['JavaScript', 'MongoDB', 'MongoDB Atlas', 'Kafka'],
         },
         {

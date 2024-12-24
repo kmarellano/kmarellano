@@ -13,7 +13,7 @@ import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 
 export function PersonalSection() {
   return (
-    <SectionWrapper className="flex bg-background min-h-svh" id="personal">
+    <SectionWrapper className="flex min-h-svh" id="personal">
       {/* Editor's Pick */}
       <section className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6">Side Projects</h2>

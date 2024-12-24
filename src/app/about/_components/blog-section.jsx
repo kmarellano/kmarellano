@@ -13,7 +13,7 @@ import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 
 export function BlogSection() {
   return (
-    <SectionWrapper className="flex bg-background min-h-svh" id="blog">
+    <SectionWrapper className="flex bg-muted min-h-svh" id="blog">
       {/* Hero Section */}
       <h2>Personal Blogs</h2>
       <section className="container mx-auto px-4 py-8">
