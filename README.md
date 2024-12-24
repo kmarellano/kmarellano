@@ -55,7 +55,7 @@
 [![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)](https://prometheus.io/)
 [![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)](https://grafana.com/)
 
-## My GitHub Stats test
+## My GitHub Stats
 
 ![Kurt's GitHub Stats](https://github-readme-stats.vercel.app/api?username=kmarellano&theme=tokyonight&show_icons=true)
 
