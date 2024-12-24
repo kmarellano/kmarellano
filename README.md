@@ -59,7 +59,7 @@
 
 ![Kurt's GitHub Stats](https://github-readme-stats.vercel.app/api?username=kmarellano&theme=tokyonight&show_icons=true)
 
-## Referencess
+## References
 
 - [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats)
 - [Awesome Badges: Skills](https://github.com/Envoy-VC/awesome-badges#-skills)
