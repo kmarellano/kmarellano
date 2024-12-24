@@ -16,6 +16,7 @@ const SKILLS = [
   'REST',
   'GraphQL',
   'AWS',
+  'Prisma',
   'SQL Databases',
   'NoSQL Databases',
   'Git',
@@ -28,7 +29,11 @@ const SKILLS = [
   'Mocha',
   'Chai',
   'Kafka',
+  'Terraform',
   'Nginx',
+  'ArgoCD',
+  'Grafana',
+  'Prometheus',
 ];
 
 export function TechnicalSection() {
