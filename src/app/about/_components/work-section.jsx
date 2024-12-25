@@ -38,7 +38,6 @@ export function WorkSection() {
             'Node.js',
             'Express',
             'Parse',
-            'PostgreSQL',
             'Docker',
           ],
           accomplishments: [
@@ -134,7 +133,7 @@ export function WorkSection() {
             'An application designed to replace end-of-day SQL update scripts with MongoDB real-time triggers, improving data processing speed and efficiency.',
           techStack: ['JavaScript', 'MongoDB', 'MongoDB Atlas', 'Kafka'],
           accomplishments: [
-            'Lead the first phase of the project, successfully migrating the database operation from SQL to MongoDB.',
+            'Led the first-ever MongoDB project, successfully migrating the database from SQL to MongoDB, and receiving positive feedback from MongoDB architects and clients.',
             'Developed real-time triggers to automate data processing, improving efficiency and accuracy.',
           ],
         },
@@ -166,8 +165,11 @@ export function WorkSection() {
       <div className="mt-8">
         <h3 className="text-3xl font-bold mb-4">Work Experience</h3>
         <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <Card key={exp.company + index} className="relative">
+          {experiences?.map((exp, index) => (
+            <Card
+              key={exp.company + index}
+              className="relative bg-transparent border-none"
+            >
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-2xl font-bold">
@@ -181,25 +183,27 @@ export function WorkSection() {
                 </div>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-4">
-                  {exp.roles.map((role, roleIndex) => (
-                    <li
-                      key={role.title + roleIndex}
-                      className="border-l-2 border-muted pl-4 py-2 text-xl"
-                    >
-                      <div className="flex items-center mb-1 text-xl">
-                        {role.isPromotion && (
-                          <Award className="mr-2 h-4 w-4 text-yellow-500" />
-                        )}
-                        <Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />
-                        <span className="font-semibold">{role.title}</span>
-                      </div>
-                      <div className="text-base text-muted-foreground">
-                        {role.date}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <div key={exp.company + index} className="mb-6">
+                  <ol className="relative border-l-2 border-muted">
+                    {exp?.roles?.map((role, roleIndex) => (
+                      <li key={role.title + roleIndex} className="mb-10 ml-6">
+                        <span className="absolute flex items-center justify-center w-6 h-6 bg-primary rounded-full -left-3">
+                          {role.isPromotion ? (
+                            <Award className="w-3 h-3 text-primary-foreground" />
+                          ) : (
+                            <Briefcase className="w-3 h-3 text-primary-foreground" />
+                          )}
+                        </span>
+                        <h3 className="flex items-center mb-1 text-lg font-semibold">
+                          {role.title}
+                        </h3>
+                        <time className="block mb-2 text-sm font-normal leading-none text-muted-foreground">
+                          {role.date}
+                        </time>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
 
                 <Accordion
                   type="single"
@@ -213,7 +217,7 @@ export function WorkSection() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="flex flex-col space-y-6">
-                        {exp.projects.map((project, projectIndex) => (
+                        {exp?.projects?.map((project, projectIndex) => (
                           <li
                             key={project.name + projectIndex}
                             className="flex flex-col gap-y-2 border-l-2 border-muted pl-4 text-xl hover:bg-background/15 p-4"
