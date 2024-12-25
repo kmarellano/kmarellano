@@ -1,14 +1,10 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from '@/components/ui/card';
-import { Search, Moon } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 
 export function PersonalSection() {
@@ -19,7 +15,7 @@ export function PersonalSection() {
         <h2 className="text-2xl font-bold mb-6">Side Projects</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {editorsPicks.map((post, index) => (
-            <Card key={index}>
+            <Card key={post.title + index}>
               <CardHeader className="p-0">
                 <div className="relative h-48">
                   <Image

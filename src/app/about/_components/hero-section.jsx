@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Facebook, Mail, Linkedin, AtSign } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 import {

@@ -17,6 +17,7 @@
     "wrapper": "@/components/wrapper",
     "configs": "@/configs",
     "lib": "@/lib",
+    "schema": "@/schema",
     "hooks": "@/hooks"
   },
   "iconLibrary": "lucide"

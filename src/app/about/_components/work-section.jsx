@@ -136,7 +136,7 @@ export function WorkSection() {
         <h3 className="text-3xl font-bold mb-4">Work Experience</h3>
         <div className="space-y-6">
           {experiences.map((exp, index) => (
-            <Card key={index} className="relative">
+            <Card key={exp.company + index} className="relative">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-2xl font-bold">
