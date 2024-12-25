@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/accordion';
 import { Briefcase, Award, SquareChartGantt } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
+import { cn } from '@/lib/utils';
 
 export function WorkSection() {
   const experiences = [
@@ -40,6 +41,10 @@ export function WorkSection() {
             'PostgreSQL',
             'Docker',
           ],
+          accomplishments: [
+            'Resolved technical debt to improve application performance,',
+            'Implemented client-side and server-side features that aligned with the specific requirements of the product owner.',
+          ],
         },
         {
           name: 'Cadet Booking Application',
@@ -53,6 +58,10 @@ export function WorkSection() {
             'Docker',
             'Kubernetes',
             'Nginx',
+          ],
+          accomplishments: [
+            'Resolved technical debt to improve the overall performance of the application.',
+            'Implemented client-side and server-side features that aligned with the specific requirements of the product owner.',
           ],
         },
         {
@@ -68,6 +77,10 @@ export function WorkSection() {
             'AWS',
             'AWS Lambda',
             'AWS SQS',
+          ],
+          accomplishments: [
+            'Developed reverse decoding solution for the Philippine Standard Geographic Code (PSGC) to improve address standardization and ensure consistency across datasets.',
+            'Conducted a detailed analysis of unformatted addresses, identifying and resolving edge cases to reduce the number of unmapped PSGC entries.',
           ],
         },
         {
@@ -88,11 +101,17 @@ export function WorkSection() {
             'Docker',
             'Nginx',
           ],
+          accomplishments: [
+            'Refactored and maintained the application to improve availability, performance, and security.',
+            'Successfully migrated the system from Node v14 to Node v18 without affecting day-to-day transactions, improving performance, improve stability, eliminate security vulnerabilities, and increase maintainability by reducing the amount of dependencies',
+            'Developed a feature to link eWallet accounts for faster and more convenient payment processing.',
+            'Implemented convenience fee feature for clients to charge additional fees for specific payment methods, enhancing revenue generation.',
+          ],
         },
         {
           name: 'Payment Orchestration Migration',
           description:
-            'An upgraded payment orchestration system that transitions from a serverless architecture to a microservices-based design. Built with Kafka and Kubernetes, it enhances scalability, reliability, and performance for efficient payment processing.',
+            'An upgraded payment orchestration system that transitions from a serverless architecture to a microservices-based design.',
           techStack: [
             'JavaScript',
             'ReactJS',
@@ -104,12 +123,20 @@ export function WorkSection() {
             'Kafka',
             'Terraform',
           ],
+          accomplishments: [
+            'Implemented a new payment orchestration system with microservices to enhance scalability, reliability, and performance for efficient processing.',
+            'Developed an offline feature enabling users to process payments in retail stores, ensuring uninterrupted service.',
+          ],
         },
         {
           name: 'Database Operation Migration for Private Bank',
           description:
             'An application designed to replace end-of-day SQL update scripts with MongoDB real-time triggers, improving data processing speed and efficiency.',
           techStack: ['JavaScript', 'MongoDB', 'MongoDB Atlas', 'Kafka'],
+          accomplishments: [
+            'Lead the first phase of the project, successfully migrating the database operation from SQL to MongoDB.',
+            'Developed real-time triggers to automate data processing, improving efficiency and accuracy.',
+          ],
         },
         {
           name: 'Purchase Request System',
@@ -123,6 +150,11 @@ export function WorkSection() {
             'PostgreSQL',
             'Docker',
             'Nginx',
+          ],
+          accomplishments: [
+            'Led front-end development, establishing a well-structured project and accelerating development by implementing reusable, high-quality components.',
+            'Assisted in setting up project infrastructure to meet client specifications and expectations.',
+            'Implemented client-side and server-side features that aligned with the specific requirements of the product owner.',
           ],
         },
       ],
@@ -176,15 +208,15 @@ export function WorkSection() {
                   defaultValue="projects"
                 >
                   <AccordionItem value="projects">
-                    <AccordionTrigger className="text-2xl">
+                    <AccordionTrigger className="text-2xl font-bold">
                       Projects I worked on
                     </AccordionTrigger>
                     <AccordionContent>
-                      <ul className="space-y-4">
+                      <ul className="flex flex-col space-y-6">
                         {exp.projects.map((project, projectIndex) => (
                           <li
                             key={project.name + projectIndex}
-                            className="flex flex-col gap-y-2 border-l-2 border-muted pl-4 text-xl"
+                            className="flex flex-col gap-y-2 border-l-2 border-muted pl-4 text-xl hover:bg-background/15 p-4"
                           >
                             <div className="flex items-center">
                               <SquareChartGantt className="mr-2 h-4 w-4 text-muted-foreground" />
@@ -192,15 +224,35 @@ export function WorkSection() {
                                 {project.name}
                               </span>
                             </div>
-                            <p className="text-base text-muted-foreground mb-2">
+                            <p
+                              className={cn('text-base text-muted-foreground', {
+                                'mb-2': !project.accomplishments,
+                              })}
+                            >
                               {project.description}
                             </p>
+
+                            {project.accomplishments && (
+                              <div className="mb-4">
+                                <h5 className="font-semibold text-base mb-2">
+                                  Key Accomplishments
+                                </h5>
+                                <ul className="list-disc list-outside pl-4 text-sm text-muted-foreground space-y-1">
+                                  {project.accomplishments.map(
+                                    (accomplishment, index) => (
+                                      <li key={accomplishment + index}>
+                                        {accomplishment}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
                             <div className="flex flex-wrap gap-2">
                               {project?.techStack?.map((tech, techIndex) => (
                                 <Badge
                                   key={tech + techIndex}
-                                  // variant="secondary"
-                                  className="text-sm"
+                                  className="text-xs"
                                 >
                                   {tech}
                                 </Badge>
