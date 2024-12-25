@@ -1,5 +1,6 @@
 import { Bitter } from 'next/font/google';
 import { ThemeProvider } from '@/components/wrapper/theme-provider';
+import { Separator } from '@/components/ui/separator';
 import './globals.css';
 
 const bitter = Bitter({
@@ -19,6 +20,16 @@ export default function RootLayout({ children }) {
         className={`${bitter.className} antialiased`}
         suppressHydrationWarning
       >
+        <div className="absolute bottom-20 flex items-center rotate-180 [writing-mode:vertical-rl] text-xs text-primary/70">
+          <div className="flex items-center">
+            <Separator
+              className="w-12 mb-10 transform rotate-90 bg-primary/70"
+              decorative={true}
+            />
+            <span className="inline-block transform rotate-90 mb-2">©</span>
+          </div>
+          <p>{new Date().getFullYear()} kmarellano</p>
+        </div>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
