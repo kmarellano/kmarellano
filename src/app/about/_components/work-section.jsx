@@ -168,7 +168,7 @@ export function WorkSection() {
           {experiences?.map((exp, index) => (
             <Card
               key={exp.company + index}
-              className="relative bg-transparent border-none"
+              className="relative bg-transparent border-none shadow-none"
             >
               <CardHeader>
                 <div className="flex items-center justify-between">
