@@ -1,8 +1,22 @@
-'use client';
+import React from 'react';
+import {
+  HeroSection,
+  TechnicalSection,
+  WorkSection,
+  BlogSection,
+  PersonalSection,
+} from './_components';
 
-import * as React from 'react';
-import { ThemeDemo } from '@/components/ui/theme-demo';
+const About = () => {
+  return (
+    <main className="min-h-screen bg-white h-screen snap-y snap-mandatory overflow-y-scroll">
+      <HeroSection />
+      <TechnicalSection />
+      <WorkSection />
+      <BlogSection />
+      <PersonalSection />
+    </main>
+  );
+};
 
-export default function Home() {
-  return <ThemeDemo />;
-}
+export default About;
