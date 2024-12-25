@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -153,7 +152,7 @@ export function WorkSection() {
                 <ul className="space-y-4">
                   {exp.roles.map((role, roleIndex) => (
                     <li
-                      key={roleIndex}
+                      key={role.title + roleIndex}
                       className="border-l-2 border-muted pl-4 py-2 text-xl"
                     >
                       <div className="flex items-center mb-1 text-xl">
@@ -184,7 +183,7 @@ export function WorkSection() {
                       <ul className="space-y-4">
                         {exp.projects.map((project, projectIndex) => (
                           <li
-                            key={projectIndex}
+                            key={project.name + projectIndex}
                             className="flex flex-col gap-y-2 border-l-2 border-muted pl-4 text-xl"
                           >
                             <div className="flex items-center">
@@ -199,7 +198,7 @@ export function WorkSection() {
                             <div className="flex flex-wrap gap-2">
                               {project?.techStack?.map((tech, techIndex) => (
                                 <Badge
-                                  key={techIndex}
+                                  key={tech + techIndex}
                                   // variant="secondary"
                                   className="text-sm"
                                 >
