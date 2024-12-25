@@ -126,7 +126,7 @@ export function BlogSection() {
         <div className="flex justify-center space-x-4 mt-12">
           <TooltipProvider>
             {blogPosts.map((blog, index) => (
-              <Tooltip key={blog.title + index}>
+              <Tooltip key={blog.title + index} delayDuration={0}>
                 <TooltipTrigger asChild>
                   <button
                     className={`w-3 h-3 rounded-full ${
