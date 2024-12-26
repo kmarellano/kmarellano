@@ -16,10 +16,36 @@ const roleSchema = z.object({
   isPromotion: z.boolean(),
 });
 
-const workSchema = z.object({
+const baseWorkSchema = z.object({
   company: z.string(),
-  startDate: z.number(),
-  endDate: z.number().nullish(),
+  startDate: z.string().date(),
+  endDate: z
+    .union([
+      z.string().refine((val) => val === '', 'Invalid date'),
+      z.string().date(),
+    ])
+    .nullable()
+    .optional(),
 });
 
-export { workSchema, projectSchema, roleSchema };
+const workSchema = baseWorkSchema.refine(
+  (data) => {
+    if (!data.endDate) {
+      return true;
+    }
+    const start = new Date(data.startDate);
+    const end = new Date(data.endDate);
+    return start < end;
+  },
+  {
+    message: 'startDate must be earlier than endDate',
+    path: ['startDate'],
+  }
+);
+
+export {
+  workSchema,
+  baseWorkSchema as updateWorkSchema,
+  projectSchema,
+  roleSchema,
+};

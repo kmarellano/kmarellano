@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { Company } from '@/lib/db/models';
-import { getOneDataById, updateData, deleteData } from '@/lib/crud';
+import { getOneData, updateData, deleteData } from '@/lib/crud';
 import { z } from 'zod';
-import { workSchema } from '@/schema';
+import { updateWorkSchema } from '@/schema';
 
 export async function GET(req, { params }) {
   try {
     const { id } = await params;
-    const company = await getOneDataById(Company, id);
+    const company = await getOneData(Company, id);
     if (!company) {
       return NextResponse.json({ error: 'Company not found' }, { status: 404 });
     }
@@ -25,7 +25,7 @@ export async function PUT(req, { params }) {
   try {
     const { id } = await params;
     const data = await req.json();
-    const company = await updateData(Company, id, data, workSchema);
+    const company = await updateData(Company, id, data, updateWorkSchema);
     if (!company) {
       return NextResponse.json({ error: 'Company not found' }, { status: 404 });
     }

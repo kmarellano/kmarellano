@@ -14,7 +14,12 @@ export async function POST(req, { params }) {
       companyId: id,
     };
 
-    const response = await createData(Project, projectData, {}, projectSchema);
+    const response = await createData(
+      Project,
+      projectData,
+      null,
+      projectSchema
+    );
     await Company.findByIdAndUpdate(id, {
       $push: { projects: response.id },
     });

@@ -1,6 +1,7 @@
 import { Bitter } from 'next/font/google';
 import { ThemeProvider } from '@/components/wrapper/theme-provider';
 import { Separator } from '@/components/ui/separator';
+import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
 const bitter = Bitter({
@@ -48,6 +49,8 @@ export default function RootLayout({ children }) {
         >
           {children}
         </ThemeProvider>
+
+        <Toaster />
       </body>
     </html>
   );

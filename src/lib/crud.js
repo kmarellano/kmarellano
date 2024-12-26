@@ -7,10 +7,11 @@ export const getData = async (model, populate) => {
   return data;
 };
 
-export const getOneDataById = async (model, id) => {
+export const getOneData = async (model, id) => {
   await connectToDatabase();
 
-  const data = await model.findById(id);
+  const query = typeof id === 'string' ? { _id: id } : id;
+  const data = await model.findOne(query);
   return data;
 };
 
@@ -30,6 +31,7 @@ export const createData = async (model, data, queryId, schema) => {
   });
 
   let queryKey = queryId ? { [queryId]: data[queryId] } : {};
+
   const isExisting = await model.findOne(queryKey);
   if (isExisting) throw new Error('Data already exists');
 
@@ -48,9 +50,9 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
 
   await connectToDatabase();
 
-  const byId = typeof id === 'string';
+  const query = typeof id === 'string' ? { _id: id } : id;
   const updatedData = await model.findOneAndUpdate(
-    byId ? { _id: id } : id,
+    query,
     { ...parsedData, updatedAt: Date.now() },
     { ...opt, new: true }
   );
@@ -64,7 +66,7 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
 export const deleteData = async (model, id) => {
   await connectToDatabase();
 
-  const byId = typeof id === 'string';
-  await model.findOneAndDelete(byId ? { _id: id } : id);
+  const query = typeof id === 'string' ? { _id: id } : id;
+  await model.findOneAndDelete(query);
   return { message: `${model.modelName} deleted successfully` };
 };

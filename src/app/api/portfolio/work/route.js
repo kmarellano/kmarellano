@@ -30,7 +30,7 @@ export async function POST(req) {
     const response = await createData(
       Company,
       companyData,
-      { company },
+      'company',
       workSchema
     );
 
