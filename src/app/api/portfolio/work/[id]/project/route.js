@@ -1,8 +1,22 @@
 import { NextResponse } from 'next/server';
 import { Project, Company } from '@/lib/db/models';
-import { createData } from '@/lib/crud';
+import { getData, createData } from '@/lib/crud';
 import { z } from 'zod';
 import { projectSchema } from '@/schema';
+
+export async function GET(req, { params }) {
+  try {
+    const { id } = await params;
+    const projects = await getData(Project, null, { companyId: id });
+
+    return NextResponse.json(projects, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error fetching projects' },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(req, { params }) {
   try {

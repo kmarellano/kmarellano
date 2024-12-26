@@ -1,12 +1,13 @@
 import { z } from 'zod';
 
-const techStackSchema = z.array(z.string()).nullish();
+const arrayOfStringSchema = z.array(z.string()).nullish();
 
 const projectSchema = z.object({
   companyId: z.string(),
   name: z.string(),
   description: z.string(),
-  techStack: techStackSchema,
+  techStack: arrayOfStringSchema,
+  accomplishments: arrayOfStringSchema,
 });
 
 const roleSchema = z.object({

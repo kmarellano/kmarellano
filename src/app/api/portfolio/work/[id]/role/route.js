@@ -1,8 +1,22 @@
 import { NextResponse } from 'next/server';
 import { Role, Company } from '@/lib/db/models';
-import { createData } from '@/lib/crud';
+import { createData, getData } from '@/lib/crud';
 import { z } from 'zod';
 import { roleSchema } from '@/schema';
+
+export async function GET(req, { params }) {
+  try {
+    const { id } = await params;
+    const roles = await getData(Role, null, { companyId: id });
+
+    return NextResponse.json(roles, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error fetching roles' },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(req, { params }) {
   try {

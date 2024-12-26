@@ -14,6 +14,7 @@ const companySchema = new mongoose.Schema({
   endDate: Date,
   roles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
   projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  deletedAt: { type: Date, default: null },
 });
 
 const Company =

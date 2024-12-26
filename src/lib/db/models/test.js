@@ -35,6 +35,8 @@
     }
 }
 
+[GET] GET ALL PROJECTS /api/portfolio/work/:id/project
+
 [GET] GET ONE PROJECT /api/portfolio/work/:id/project/:projectId
 
 [GET] GET ALL PROJECTS /api/portfolio/work/:id/project

@@ -19,6 +19,7 @@ const roleSchema = new mongoose.Schema({
     ref: 'Company',
     required: true,
   },
+  deletedAt: { type: Date, default: null },
 });
 
 const Role = mongoose.models.Role || mongoose.model('Role', roleSchema);

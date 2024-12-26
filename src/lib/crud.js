@@ -1,16 +1,33 @@
+import { isValidObjectId } from 'mongoose';
 import connectToDatabase from '@/lib/db/mongoose';
 
-export const getData = async (model, populate) => {
+export const getData = async (model, populate, query) => {
   await connectToDatabase();
 
-  const data = await model.find().populate(populate);
+  const data = await model
+    .find(
+      query
+        ? { ...query, deletedAt: { $eq: null } }
+        : {
+            deletedAt: { $eq: null },
+          }
+    )
+    .populate(populate);
   return data;
 };
 
 export const getOneData = async (model, id) => {
   await connectToDatabase();
 
-  const query = typeof id === 'string' ? { _id: id } : id;
+  const isIdString = typeof id === 'string';
+  if (isIdString && !isValidObjectId(id)) {
+    throw new Error('Invalid id provided');
+  }
+
+  const query = isIdString
+    ? { _id: id, deletedAt: { $eq: null } }
+    : { ...id, deletedAt: { $eq: null } };
+
   const data = await model.findOne(query);
   return data;
 };
@@ -30,10 +47,12 @@ export const createData = async (model, data, queryId, schema) => {
     updatedAt: currentDate,
   });
 
-  let queryKey = queryId ? { [queryId]: data[queryId] } : {};
+  if (queryId) {
+    const queryKey = { [queryId]: data[queryId] };
 
-  const isExisting = await model.findOne(queryKey);
-  if (isExisting) throw new Error('Data already exists');
+    const isExisting = await model.findOne(queryKey);
+    if (isExisting) throw new Error('Data already exists');
+  }
 
   await newData.save();
   return {
@@ -50,8 +69,13 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
 
   await connectToDatabase();
 
-  const query = typeof id === 'string' ? { _id: id } : id;
-  const updatedData = await model.findOneAndUpdate(
+  const isIdString = typeof id === 'string';
+  if (isIdString && !isValidObjectId(id)) {
+    throw new Error('Invalid id provided');
+  }
+
+  const query = isIdString ? { _id: id } : id;
+  const updatedData = await model.ç(
     query,
     { ...parsedData, updatedAt: Date.now() },
     { ...opt, new: true }
@@ -66,7 +90,17 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
 export const deleteData = async (model, id) => {
   await connectToDatabase();
 
-  const query = typeof id === 'string' ? { _id: id } : id;
-  await model.findOneAndDelete(query);
+  const isIdString = typeof id === 'string';
+  if (isIdString && !isValidObjectId(id)) {
+    throw new Error('Invalid id provided');
+  }
+
+  const query = isIdString ? { _id: id } : id;
+  const d = await model.findOneAndUpdate(query, {
+    $set: {
+      deletedAt: new Date().toISOString(),
+    },
+  });
+  console.log('hey', d);
   return { message: `${model.modelName} deleted successfully` };
 };

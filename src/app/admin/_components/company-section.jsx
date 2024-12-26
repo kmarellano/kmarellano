@@ -21,6 +21,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { PlusCircle, Edit } from 'lucide-react';
+import Link from 'next/link';
 
 export function CompanyManagement() {
   const [companies, setCompanies] = useState([]);
@@ -173,7 +174,14 @@ export function CompanyManagement() {
           <TableBody>
             {companies.map((company) => (
               <TableRow key={company._id}>
-                <TableCell className="font-medium">{company.company}</TableCell>
+                <TableCell className="font-medium">
+                  <Link
+                    href={`/admin/${company._id}`}
+                    className="text-primary underline underline-offset-4"
+                  >
+                    {company.company}
+                  </Link>
+                </TableCell>
                 <TableCell>
                   {new Date(company.startDate).toLocaleDateString()}
                 </TableCell>

@@ -14,6 +14,7 @@ const techSchema = new mongoose.Schema({
       'Testing & Quality Assurance',
       'Monitoring & Logging',
     ],
+    deletedAt: { type: Date, default: null },
   },
 });
 

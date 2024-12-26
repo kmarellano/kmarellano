@@ -9,11 +9,15 @@ const projectSchema = new mongoose.Schema({
   techStack: {
     type: [String],
   },
+  accomplishments: {
+    type: [String],
+  },
   companyId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company',
     required: true,
   },
+  deletedAt: { type: Date, default: null },
 });
 
 const Project =
