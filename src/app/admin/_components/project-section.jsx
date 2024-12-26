@@ -50,7 +50,7 @@ export function ProjectManagement() {
 
   const fetchProjects = async () => {
     try {
-      const projectsResponse = await fetch(`/api/portfolio/work/${id}/project`);
+      const projectsResponse = await fetch(`/api/admin/work/${id}/project`);
       if (!projectsResponse.ok) {
         throw new Error('Failed to fetch projects');
       }
@@ -73,8 +73,8 @@ export function ProjectManagement() {
 
       const response = await fetch(
         editingProject
-          ? `/api/portfolio/work/${id}/project/${editingProject._id}`
-          : `/api/portfolio/work/${id}/project`,
+          ? `/api/admin/work/${id}/project/${editingProject._id}`
+          : `/api/admin/work/${id}/project`,
         {
           method: editingProject ? 'PUT' : 'POST',
           headers: {
@@ -118,7 +118,7 @@ export function ProjectManagement() {
 
     try {
       const response = await fetch(
-        `/api/portfolio/work/${id}/project/${projectId}`,
+        `/api/admin/work/${id}/project/${projectId}`,
         {
           method: 'DELETE',
         }

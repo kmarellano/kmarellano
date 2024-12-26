@@ -9,10 +9,7 @@ export async function GET() {
     const companies = await getData(Company, 'projects roles');
     return NextResponse.json(companies, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Error fetching companies' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 

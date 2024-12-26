@@ -37,7 +37,7 @@ export function CompanyManagement() {
 
   const fetchCompanies = async () => {
     try {
-      const response = await fetch('/api/portfolio/work');
+      const response = await fetch('/api/admin/work');
       const data = await response.json();
       setCompanies(data);
     } catch (error) {
@@ -54,8 +54,8 @@ export function CompanyManagement() {
 
       const response = await fetch(
         editingCompany
-          ? `/api/portfolio/work/${editingCompany._id}`
-          : '/api/portfolio/work',
+          ? `/api/admin/work/${editingCompany._id}`
+          : '/api/admin/work',
         {
           method: editingCompany ? 'PUT' : 'POST',
           headers: {

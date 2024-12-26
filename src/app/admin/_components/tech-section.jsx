@@ -31,7 +31,7 @@ export default function CompaniesClient() {
 
   const fetchCompanies = async () => {
     try {
-      const response = await fetch('/api/portfolio/work');
+      const response = await fetch('/api/admin/work');
       const data = await response.json();
       setCompanies(data);
     } catch (error) {
@@ -44,7 +44,7 @@ export default function CompaniesClient() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-    const response = await fetch('/api/portfolio/work', {
+    const response = await fetch('/api/admin/work', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

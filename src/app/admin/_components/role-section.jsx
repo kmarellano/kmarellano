@@ -38,7 +38,7 @@ export function RoleManagement() {
 
   const fetchRoles = async () => {
     try {
-      const rolesResponse = await fetch(`/api/portfolio/work/${id}/role`);
+      const rolesResponse = await fetch(`/api/admin/work/${id}/role`);
       if (!rolesResponse.ok) {
         throw new Error('Failed to fetch roles');
       }
@@ -60,8 +60,8 @@ export function RoleManagement() {
 
       const response = await fetch(
         editingRole
-          ? `/api/portfolio/work/${id}/role/${editingRole._id}`
-          : `/api/portfolio/work/${id}/role`,
+          ? `/api/admin/work/${id}/role/${editingRole._id}`
+          : `/api/admin/work/${id}/role`,
         {
           method: editingRole ? 'PUT' : 'POST',
           headers: {
@@ -107,7 +107,7 @@ export function RoleManagement() {
     }
 
     try {
-      const response = await fetch(`/api/portfolio/work/${id}/role/${roleId}`, {
+      const response = await fetch(`/api/admin/work/${id}/role/${roleId}`, {
         method: 'DELETE',
       });
 
@@ -130,7 +130,7 @@ export function RoleManagement() {
   };
 
   return (
-    <div className="space-y-4 p-4">
+    <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Roles</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

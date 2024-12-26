@@ -16,7 +16,7 @@ export default function ProjectAndRoleManagement() {
 
   const fetchCompany = async () => {
     try {
-      const companyResponse = await fetch(`/api/portfolio/work/${id}`);
+      const companyResponse = await fetch(`/api/admin/work/${id}`);
       if (!companyResponse.ok) {
         router.replace('/404');
       }

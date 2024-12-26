@@ -1,5 +1,5 @@
 // COMPANY
-[POST] CREATE COMPANY /api/portfolio/work
+[POST] CREATE COMPANY /api/admin/work
 {
     body: {
         name: String,
@@ -8,11 +8,11 @@
     }
 }
 
-[GET] GET COMPANY /api/portfolio/work/:id
+[GET] GET COMPANY /api/admin/work/:id
 
-[GET] GET ALL COMPANIES /api/portfolio/work
+[GET] GET ALL COMPANIES /api/admin/work
 
-[PUT] CREATE COMPANY /api/portfolio/work/:id
+[PUT] CREATE COMPANY /api/admin/work/:id
 {
     body: {
         name: String,
@@ -25,7 +25,7 @@
 
 // PROJECTS
 // Note :id is companyId, u should fetch the company first then apply it to the company
-[POST] CREATE PROJECT /api/portfolio/work/:id/project
+[POST] CREATE PROJECT /api/admin/work/:id/project
 {
     body: {
         name: String,
@@ -35,13 +35,13 @@
     }
 }
 
-[GET] GET ALL PROJECTS /api/portfolio/work/:id/project
+[GET] GET ALL PROJECTS /api/admin/work/:id/project
 
-[GET] GET ONE PROJECT /api/portfolio/work/:id/project/:projectId
+[GET] GET ONE PROJECT /api/admin/work/:id/project/:projectId
 
-[GET] GET ALL PROJECTS /api/portfolio/work/:id/project
+[GET] GET ALL PROJECTS /api/admin/work/:id/project
 
-[PUT] UPDATE PROJECT /api/portfolio/work/:id/project/:projectId
+[PUT] UPDATE PROJECT /api/admin/work/:id/project/:projectId
 {
     body: {
         name: String,
@@ -51,11 +51,11 @@
     }
 }
 
-[DELETE] DELETE PROJECT /api/portfolio/work/:id/project/:projectId
+[DELETE] DELETE PROJECT /api/admin/work/:id/project/:projectId
 
 // ROLES
 // Note :id is companyId, u should fetch the company first then apply it to the company
-[POST] CREATE ROLE /api/portfolio/work/:id/role
+[POST] CREATE ROLE /api/admin/work/:id/role
 {
     body: {
         title: String,
@@ -64,11 +64,11 @@
     }
 }
 
-[GET] GET ONE ROLE /api/portfolio/work/:id/role/:roleId
+[GET] GET ONE ROLE /api/admin/work/:id/role/:roleId
 
-[GET] GET ALL ROLES /api/portfolio/work/:id/role
+[GET] GET ALL ROLES /api/admin/work/:id/role
 
-[PUT] UPDATE ROLE /api/portfolio/work/:id/role/:roleId
+[PUT] UPDATE ROLE /api/admin/work/:id/role/:roleId
 {
     body: {
         title: String,
@@ -77,11 +77,11 @@
     }
 }
 
-[DELETE] DELETE ROLE /api/portfolio/work/:id/role/:roleId
+[DELETE] DELETE ROLE /api/admin/work/:id/role/:roleId
 
 // Technologies
 // id here is tech id
-[POST] CREATE TECHNOLOGY /api/portfolio/tech
+[POST] CREATE TECHNOLOGY /api/admin/tech
 {
     body: {
         name: String,
@@ -98,9 +98,9 @@
     }
 }
 
-[GET] GET ALL TECHS /api/portfolio/tech
+[GET] GET ALL TECHS /api/admin/tech
 
-[PUT] UPDATE TECH /api/portfolio/tech/:id
+[PUT] UPDATE TECH /api/admin/tech/:id
 {
     body: {
         name: String,
@@ -117,4 +117,4 @@
     }
 }
 
-[DELETE] DELETE TECH /api/portfolio/tech/:id/
+[DELETE] DELETE TECH /api/admin/tech/:id/

@@ -1,9 +1,11 @@
 import { isValidObjectId } from 'mongoose';
 import connectToDatabase from '@/lib/db/mongoose';
+import { auth } from '@clerk/nextjs/server';
 
 export const getData = async (model, populate, query) => {
   await connectToDatabase();
 
+  // await auth.protect();
   const data = await model
     .find(
       query
@@ -13,10 +15,17 @@ export const getData = async (model, populate, query) => {
           }
     )
     .populate(populate);
+
   return data;
 };
 
 export const getOneData = async (model, id) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
   await connectToDatabase();
 
   const isIdString = typeof id === 'string';
@@ -33,6 +42,12 @@ export const getOneData = async (model, id) => {
 };
 
 export const createData = async (model, data, queryId, schema) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
   let parsedData = data;
   if (schema) {
     parsedData = schema.parse(data);
@@ -62,6 +77,12 @@ export const createData = async (model, data, queryId, schema) => {
 };
 
 export const updateData = async (model, id, data, schema, opt = {}) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
   let parsedData = data;
   if (schema) {
     parsedData = schema.partial().parse(data);
@@ -75,7 +96,7 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
   }
 
   const query = isIdString ? { _id: id } : id;
-  const updatedData = await model.ç(
+  const updatedData = await model.findOneAndUpdate(
     query,
     { ...parsedData, updatedAt: Date.now() },
     { ...opt, new: true }
@@ -88,6 +109,12 @@ export const updateData = async (model, id, data, schema, opt = {}) => {
 };
 
 export const deleteData = async (model, id) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
   await connectToDatabase();
 
   const isIdString = typeof id === 'string';
