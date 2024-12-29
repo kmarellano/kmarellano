@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Instagram, Mail, Linkedin } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 import {
   Tooltip,
@@ -8,12 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-const SOCIALS = {
-  INSTAGRAM_URL: process.env.INSTAGRAM_URL,
-  PERSONAL_EMAIL: process.env.PERSONAL_EMAIL,
-  LINKEDIN_URL: process.env.LINKEDIN_URL,
-};
+import { SOCIALS } from '@/configs';
 
 export function HeroSection() {
   return (
@@ -34,30 +28,18 @@ export function HeroSection() {
             things, whether online or out in the real world.
           </p>
           <div className="flex gap-4">
-            <Link
-              href={SOCIALS.LINKEDIN_URL}
-              className="text-muted-foreground hover:text-primary"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Linkedin className="w-5 h-5" />
-            </Link>
-            <Link
-              href={SOCIALS.INSTAGRAM_URL}
-              className="text-muted-foreground hover:text-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram className="w-5 h-5" />
-            </Link>
-            <Link
-              href={`mailto:${SOCIALS.PERSONAL_EMAIL}`}
-              className="text-muted-foreground hover:text-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Mail className="w-5 h-5" />
-            </Link>
+            {Object.values(SOCIALS).map(({ href, Icon, isMail }) => (
+              <div key={href}>
+                <Link
+                  href={!isMail ? href : `mailto:${href}`}
+                  className="text-muted-foreground hover:text-primary"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Icon className="w-5 h-5" />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
 

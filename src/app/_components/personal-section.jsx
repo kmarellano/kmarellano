@@ -5,7 +5,7 @@ import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 export function PersonalSection() {
   const personalProjects = [
     {
-      title: 'CodeSync: Open Source Contribution Tracker',
+      title: 'Lorem Title: Open Source Contribution Tracker',
       category: 'Software Development',
       image: '/placeholder.svg',
       author: {
@@ -14,7 +14,7 @@ export function PersonalSection() {
       },
     },
     {
-      title: 'DeployMate: Scalable Web App Builder',
+      title: 'Lorem Title: Scalable Web App Builder',
       category: 'Software Development',
       image: '/placeholder.svg',
       author: {
@@ -23,7 +23,7 @@ export function PersonalSection() {
       },
     },
     {
-      title: 'DevLink: Remote Collaboration Platform',
+      title: 'Lorem Title: Remote Collaboration Platform',
       category: 'Software Development',
       image: '/placeholder.svg',
       author: {

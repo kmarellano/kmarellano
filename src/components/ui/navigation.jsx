@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import {
-  AlignJustify,
-  X,
-  MapPin,
-  Twitter,
-  Facebook,
-  Linkedin,
-  Globe,
-} from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { SOCIALS } from '@/configs';
+
+const NAV_ITEMS = [
+  { href: '#home', label: 'HOME' },
+  { href: '#skills', label: 'SKILLS' },
+  { href: '#blogs', label: 'BLOGS' },
+  { href: '#personal', label: 'PERSONAL PROJECTS' },
+];
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ export function Navigation() {
         className="fixed top-8 left-8 z-50"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X /> : <AlignJustify />}
+        {isOpen ? <X /> : <Menu />}
         <span className="sr-only">Menu</span>
       </Button>
 
@@ -37,65 +37,61 @@ export function Navigation() {
           }
         )}
       >
-        <div className="mx-auto max-w-screen-xl h-full p-6">
-          <header className="flex items-start justify-between h-full">
+        <div className="mx-auto max-w-screen-xl h-full p-8">
+          <div className="flex flex-col justify-center h-full space-y-10">
             <div className="space-y-12">
-              <div className="text-2xl font-bold">kmarellano</div>
-              <nav className="space-y-4">
-                {[
-                  { href: '#home', label: 'HOME' },
-                  { href: '#skills', label: 'SKILLS' },
-                  { href: '#blogs', label: 'BLOGS' },
-                  { href: '#personal', label: 'PERSONAL PROJECTS' },
-                ].map((link) => (
-                  <div key={link.href} className="group text-6xl font-bold">
-                    <Link
-                      href={link.href}
-                      className={'block relative overflow-hidden'}
-                      onClick={() => setIsOpen(false)}
+              {NAV_ITEMS.map((link, i) => (
+                <div key={link.href} className="group text-6xl font-bold">
+                  <Link
+                    href={link.href}
+                    className="block relative overflow-hidden"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span
+                      className={cn(
+                        'relative block transition-transform duration-500 group-hover:-translate-y-full text-primary/60'
+                      )}
                     >
-                      <span className="relative block transition-transform duration-500 group-hover:-translate-y-full text-muted-foreground">
-                        {link.label}
-                      </span>
-                      <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full">
-                        {link.label}
-                      </span>
-                    </Link>
-                  </div>
-                ))}
-              </nav>
+                      {link.label}
+                    </span>
+                    <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full text-primary">
+                      {link.label}
+                    </span>
+                  </Link>
+                </div>
+              ))}
             </div>
 
-            <div className="space-y-8 text-right">
-              <div className="flex justify-end gap-4">
-                {[
-                  { href: 'https://twitter.com', Icon: Twitter },
-                  { href: 'https://facebook.com', Icon: Facebook },
-                  { href: 'https://linkedin.com', Icon: Linkedin },
-                  { href: 'https://example.com', Icon: Globe },
-                ].map(({ href, Icon }) => (
-                  <Button key={href} variant="ghost" size="icon" asChild>
-                    <a href={href} target="_blank" rel="noopener noreferrer">
-                      <Icon className="h-4 w-4" />
-                      <span className="sr-only">{href}</span>
-                    </a>
-                  </Button>
-                ))}
-              </div>
-
-              <div className="space-y-2 text-sm">
-                <p>hello@uncut.com</p>
-                <p>+44 1234241141</p>
-                <p>Some Street 112</p>
-                <p>W124XX</p>
-                <p>London, UK</p>
-                <Button variant="outline" size="sm" className="mt-4">
-                  <MapPin className="mr-2 h-4 w-4" />
-                  VIEW MAP
-                </Button>
+            <div className="flex justify-start gap-4">
+              <div className="group text-6xl font-bold">
+                <div className="block relative overflow-hidden">
+                  <span
+                    className={cn(
+                      'relative block transition-transform duration-500 group-hover:-translate-y-full text-primary/60'
+                    )}
+                  >
+                    CONTACT ME
+                  </span>
+                  <span className="absolute top-full left-0 transition-transform duration-500 group-hover:-translate-y-full text-primary flex gap-x-8">
+                    {Object.values(SOCIALS).map(({ href, Icon, isMail }) => (
+                      <Link
+                        key={href}
+                        href={isMail ? `mailto:${href}` : href}
+                        className="text-muted-foreground hover:text-primary"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        aria-label={
+                          isMail ? `Email: ${href}` : `Visit: ${href}`
+                        }
+                      >
+                        <Icon className="w-12 h-auto" />
+                      </Link>
+                    ))}
+                  </span>
+                </div>
               </div>
             </div>
-          </header>
+          </div>
         </div>
       </div>
     </React.Fragment>

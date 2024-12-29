@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
-import { Music, Film, Camera, Phone, Mail, MapPin } from 'lucide-react';
 
 const SKILLS = [
   'JavaScript',

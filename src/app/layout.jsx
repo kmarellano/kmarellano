@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           suppressHydrationWarning
         >
           <Navigation />
-          <div className="absolute bottom-20 flex items-center rotate-180 [writing-mode:vertical-rl] text-xs text-primary/70">
+          <div className="absolute bottom-20 flex items-center rotate-180 [writing-mode:vertical-rl] text-xs text-primary/70 z-40">
             <div className="flex items-center">
               <Separator
                 className="w-12 mb-10 transform rotate-90 bg-primary/70"
