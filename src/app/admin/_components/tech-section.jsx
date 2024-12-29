@@ -28,7 +28,6 @@ import {
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { PlusCircle, Edit, Trash } from 'lucide-react';
-import Link from 'next/link';
 
 const FIELD_OPTIONS = [
   'Frontend',

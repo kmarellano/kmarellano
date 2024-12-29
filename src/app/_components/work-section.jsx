@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import useSWR from 'swr';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -9,25 +12,17 @@ import {
 } from '@/components/ui/accordion';
 import { Briefcase, Award, SquareChartGantt } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
-import { cn, getFullYear, formatMonthYY } from '@/lib/utils';
+import { cn, getFullYear, formatMonthYY, fetcher } from '@/lib/utils';
 
-const fetchExperiences = async () => {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/api/admin/work`, {
-    cache: 'force-cache',
-    next: { revalidate: 60 * 60 * 8 },
-  });
-  if (!response.ok) throw new Error('Failed to fetch ');
-  return response.json();
-};
+export function WorkSection() {
+  const { data } = useSWR('/api/admin/work', fetcher);
 
-export async function WorkSection() {
-  const experiences = await fetchExperiences();
   return (
     <SectionWrapper id="projects">
       <div className="mt-8">
         <h3 className="text-3xl font-bold mb-4">Work Experience</h3>
         <div className="space-y-6">
-          {experiences?.map((exp, index) => (
+          {data?.map((exp, index) => (
             <Card
               key={exp.company + index}
               className="relative bg-transparent border-none shadow-none"

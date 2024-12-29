@@ -1,17 +1,12 @@
+'use client';
+
+import useSWR from 'swr';
 import { Badge } from '@/components/ui/badge';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
+import { fetcher } from '@/lib/utils';
 
-const fetchSkills = async () => {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/api/admin/tech`, {
-    cache: 'force-cache',
-    next: { revalidate: 60 * 60 * 8 },
-  });
-  if (!response.ok) throw new Error('Failed to fetch ');
-  return response.json();
-};
-
-export async function TechnicalSection() {
-  const skills = await fetchSkills();
+export function TechnicalSection() {
+  const { data } = useSWR('/api/admin/tech', fetcher);
 
   return (
     <SectionWrapper className="bg-muted" id="skills">
@@ -27,7 +22,7 @@ export async function TechnicalSection() {
         </div>
         <div className="mt-8">
           <div className="flex flex-wrap gap-2">
-            {skills.map(({ _id, name }) => (
+            {data?.map(({ _id, name }) => (
               <Badge
                 key={_id}
                 variant="outline"

@@ -5,6 +5,13 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export const fetcher = (url) => {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error('Failed to fetch');
+    return response.json();
+  });
+};
+
 export function capitalizeFirstLetter(string) {
   if (!string && typeof string !== 'string') return '';
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
