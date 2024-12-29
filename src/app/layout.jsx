@@ -3,7 +3,6 @@ import { ThemeProvider } from '@/components/wrapper/theme-provider';
 import { Separator } from '@/components/ui/separator';
 import { Toaster } from '@/components/ui/toaster';
 import { ClerkProvider } from '@clerk/nextjs';
-import { Navigation } from '@/components/ui/navigation';
 import './globals.css';
 
 const bitter = Bitter({
@@ -24,7 +23,6 @@ export default function RootLayout({ children }) {
           className={`${bitter.className} antialiased`}
           suppressHydrationWarning
         >
-          <Navigation />
           <div className="absolute bottom-20 flex items-center rotate-180 [writing-mode:vertical-rl] text-xs text-primary/70 z-40">
             <div className="flex items-center">
               <Separator
