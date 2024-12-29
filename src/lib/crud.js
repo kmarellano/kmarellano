@@ -63,7 +63,9 @@ export const createData = async (model, data, queryId, schema) => {
   });
 
   if (queryId) {
-    const queryKey = { [queryId]: data[queryId] };
+    const queryKey = {
+      [queryId]: { $regex: new RegExp(data[queryId], 'i') },
+    };
 
     const isExisting = await model.findOne(queryKey);
     if (isExisting) throw new Error('Data already exists');

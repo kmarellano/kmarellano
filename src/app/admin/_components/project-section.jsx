@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -84,8 +84,9 @@ export function ProjectManagement() {
         }
       );
 
+      const responseData = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to submit the data. Please try again.');
+        throw new Error(responseData.error);
       }
 
       toast({
@@ -216,7 +217,10 @@ export function ProjectManagement() {
               <div className="space-y-2">
                 <Label>Tech Stack</Label>
                 {techStacks.map((techStack, index) => (
-                  <div key={index} className="flex items-center space-x-2">
+                  <div
+                    key={techStack + index}
+                    className="flex items-center space-x-2"
+                  >
                     <Input
                       value={techStack}
                       onChange={(e) =>
@@ -244,7 +248,10 @@ export function ProjectManagement() {
               <div className="space-y-2">
                 <Label>Accomplishments</Label>
                 {accomplishments.map((accomplishment, index) => (
-                  <div key={index} className="flex items-center space-x-2">
+                  <div
+                    key={accomplishment + index}
+                    className="flex items-center space-x-2"
+                  >
                     <Input
                       value={accomplishment}
                       onChange={(e) =>
@@ -297,7 +304,7 @@ export function ProjectManagement() {
                 <TableCell>{project?.techStack?.join(', ')}</TableCell>
                 <TableCell>
                   {project?.accomplishments?.map((accomplishment, index) => (
-                    <React.Fragment key={index}>
+                    <React.Fragment key={accomplishment + index}>
                       <p>{accomplishment}</p>
                     </React.Fragment>
                   ))}

@@ -34,20 +34,10 @@ export async function PUT(req, { params }) {
 export async function DELETE(req, { params }) {
   try {
     const { id } = await params;
+    const response = await deleteData(Tech, id);
 
-    const tech = await deleteData(Tech, id);
-    if (!tech) {
-      return NextResponse.json({ error: 'Tech not found' }, { status: 404 });
-    }
-
-    return NextResponse.json(
-      { message: 'Tech deleted successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json(response, { status: 200 });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.flatten() }, { status: 400 });
-    }
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

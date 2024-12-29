@@ -8,6 +8,7 @@ const techSchema = z.object({
     'DevOps',
     'Testing & Quality Assurance',
     'Monitoring & Logging',
+    'Language',
   ]),
 });
 

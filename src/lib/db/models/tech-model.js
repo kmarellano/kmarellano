@@ -13,8 +13,12 @@ const techSchema = new mongoose.Schema({
       'DevOps',
       'Testing & Quality Assurance',
       'Monitoring & Logging',
+      'Language',
     ],
-    deletedAt: { type: Date, default: null },
+  },
+  deletedAt: {
+    type: Date,
+    default: null,
   },
 });
 

@@ -1,40 +1,18 @@
 import { Badge } from '@/components/ui/badge';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 
-const SKILLS = [
-  'JavaScript',
-  'React',
-  'Node.js',
-  'TypeScript',
-  'Express',
-  'Fastify',
-  'Next.js',
-  'NestJS',
-  'Serverless',
-  'REST',
-  'GraphQL',
-  'AWS',
-  'Prisma',
-  'SQL Databases',
-  'NoSQL Databases',
-  'Git',
-  'CI/CD',
-  'Docker',
-  'Kubernetes',
-  'Microservices',
-  'Redis',
-  'Jest',
-  'Mocha',
-  'Chai',
-  'Kafka',
-  'Terraform',
-  'Nginx',
-  'ArgoCD',
-  'Grafana',
-  'Prometheus',
-];
+const fetchSkills = async () => {
+  const response = await fetch(`${process.env.PUBLIC_API_URL}/api/admin/tech`, {
+    cache: 'force-cache',
+    next: { revalidate: 60 * 60 * 8 },
+  });
+  if (!response.ok) throw new Error('Failed to fetch ');
+  return response.json();
+};
 
-export function TechnicalSection() {
+export async function TechnicalSection() {
+  const skills = await fetchSkills();
+
   return (
     <SectionWrapper className="bg-muted" id="skills">
       <div className="container px-4">
@@ -49,13 +27,13 @@ export function TechnicalSection() {
         </div>
         <div className="mt-8">
           <div className="flex flex-wrap gap-2">
-            {SKILLS.map((skill) => (
+            {skills.map(({ _id, name }) => (
               <Badge
-                key={skill}
+                key={_id}
                 variant="outline"
                 className="text-lg border-primary"
               >
-                {skill}
+                {name}
               </Badge>
             ))}
           </div>

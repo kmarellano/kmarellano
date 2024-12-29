@@ -71,8 +71,9 @@ export function RoleManagement() {
         }
       );
 
+      const responseData = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to submit the data. Please try again.');
+        throw new Error(responseData.error);
       }
 
       toast({

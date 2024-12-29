@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+  SelectContent,
+} from '@/components/ui/select';
+import {
   Table,
   TableBody,
   TableCell,
@@ -19,101 +26,204 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { PlusCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { PlusCircle, Edit, Trash } from 'lucide-react';
+import Link from 'next/link';
 
-export default function CompaniesClient() {
-  const [companies, setCompanies] = useState([]);
+const FIELD_OPTIONS = [
+  'Frontend',
+  'Backend',
+  'DevOps',
+  'Testing & Quality Assurance',
+  'Monitoring & Logging',
+  'Language',
+];
+
+export function TechManagement() {
+  const [techs, setTechs] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [editingTech, setEditingTech] = useState(null);
+  const [field, setField] = useState('');
+
+  const { toast } = useToast();
 
   useEffect(() => {
-    fetchCompanies();
+    fetchTechs();
   }, []);
 
-  const fetchCompanies = async () => {
+  const fetchTechs = async () => {
     try {
-      const response = await fetch('/api/admin/work');
+      const response = await fetch('/api/admin/tech');
       const data = await response.json();
-      setCompanies(data);
+      setTechs(data);
     } catch (error) {
-      console.error('Failed to fetch companies:', error);
+      console.error('Failed to fetch techs:', error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    setIsLoading(true);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData.entries());
+      data.field = field;
 
-    const response = await fetch('/api/admin/work', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+      const response = await fetch(
+        editingTech ? `/api/admin/tech/${editingTech._id}` : '/api/admin/tech',
+        {
+          method: editingTech ? 'PUT' : 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    const result = await response.json();
-    console.log('Response:', result);
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.error);
+      }
 
-    setIsDialogOpen(false);
-    fetchCompanies(); // Refresh the list of companies
+      toast({
+        title: 'Success',
+        description: `Tech ${editingTech ? 'updated' : 'added'} successfully!`,
+      });
+
+      await fetchTechs();
+      setIsDialogOpen(false);
+      setEditingTech(null);
+      setField('');
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error.message,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleEditClick = (tech) => {
+    setEditingTech(tech);
+    setField(tech.field);
+    setIsDialogOpen(true);
+  };
+
+  const handleDeleteClick = async (techId) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this tech?'
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/tech/${techId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete the tech. Please try again.');
+      }
+
+      toast({
+        title: 'Success',
+        description: 'Tech deleted successfully!',
+      });
+
+      await fetchTechs();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error.message,
+      });
+    }
   };
 
   return (
-    <div className="space-y-4 my-8 mx-12">
+    <div className="space-y-4 my-8 mx-12 h-svh">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Companies</h2>
+        <h2 className="text-2xl font-bold">Techs</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button
+              onClick={() => {
+                setEditingTech(null);
+                setField('');
+              }}
+            >
               <PlusCircle className="mr-2 h-4 w-4" />
-              Add Company
+              Add Tech
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add New Company</DialogTitle>
+              <DialogTitle>
+                {editingTech ? 'Edit Tech' : 'Add New Tech'}
+              </DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="company">Company Name</Label>
-                <Input id="company" name="company" required />
+                <Label htmlFor="tech">Technology Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  defaultValue={editingTech?.name || ''}
+                  required
+                />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="startDate">Start Date</Label>
-                <Input id="startDate" name="startDate" type="date" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="endDate">End Date</Label>
-                <Input id="endDate" name="endDate" type="date" />
+                <Label htmlFor="field">Field</Label>
+                <Select value={field} onValueChange={setField} required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a field" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {FIELD_OPTIONS.map((item) => (
+                      <SelectItem value={item} key={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex flex-wrap justify-end">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" disabled={isLoading}>
+                  Submit
+                </Button>
               </div>
             </form>
           </DialogContent>
         </Dialog>
       </div>
-      <div className="border rounded-lg overflow-hidden">
+      <div className="border rounded-lg border-accent-foreground/10 overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Company</TableHead>
-              <TableHead>Start Date</TableHead>
-              <TableHead>End Date</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Field</TableHead>
+              <TableHead className="w-28">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {companies.map((company) => (
-              <TableRow key={company._id}>
-                <TableCell className="font-medium">{company.company}</TableCell>
-                <TableCell>
-                  {new Date(company.startDate).toLocaleDateString()}
-                </TableCell>
-                <TableCell>
-                  {company.endDate
-                    ? new Date(company.endDate).toLocaleDateString()
-                    : 'Present'}
+            {techs.map((tech) => (
+              <TableRow key={tech._id}>
+                <TableCell className="font-medium">{tech.name}</TableCell>
+                <TableCell>{tech.field}</TableCell>
+                <TableCell className="flex space-x-2">
+                  <Button onClick={() => handleEditClick(tech)}>
+                    <Edit className="mr-2 h-4 w-4" />
+                    Edit
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDeleteClick(tech._id)}
+                  >
+                    <Trash className="mr-2 h-4 w-4" />
+                    Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

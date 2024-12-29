@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
 import { Tech } from '@/lib/db/models';
-import { createData } from '@/lib/crud';
+import { getData, createData } from '@/lib/crud';
 import { z } from 'zod';
 import { techSchema } from '@/schema';
+
+export async function GET() {
+  try {
+    const techs = await getData(Tech);
+    return NextResponse.json(techs, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
 
 export async function POST(req) {
   try {

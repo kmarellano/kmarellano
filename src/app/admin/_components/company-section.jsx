@@ -65,8 +65,9 @@ export function CompanyManagement() {
         }
       );
 
+      const responseData = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to submit the data. Please try again.');
+        throw new Error(responseData.error);
       }
 
       toast({
@@ -95,7 +96,7 @@ export function CompanyManagement() {
   };
 
   return (
-    <div className="space-y-4 my-8 mx-12 h-svh">
+    <div className="space-y-4 my-8 mx-12">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Companies</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
