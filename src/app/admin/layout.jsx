@@ -5,7 +5,7 @@ export default function AdminLayout({ children }) {
   return (
     <div>
       {children}
-      <div className="absolute bottom-16 right-4 z-50">
+      <div className="fixed bottom-16 right-10 z-50">
         <UserButton />
       </div>
     </div>

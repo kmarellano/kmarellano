@@ -206,7 +206,7 @@ export function RoleManagement() {
                   {new Date(role.date).toLocaleDateString()}
                 </TableCell>
                 <TableCell>{role.isPromotion ? 'Yes' : 'No'}</TableCell>
-                <TableCell className="flex gap-x-2 mx-auto">
+                <TableCell className="flex flex-wrap gap-x-2 mx-auto">
                   <Button onClick={() => handleEditClick(role)}>
                     <Edit className="mr-2 h-4 w-4" />
                     Edit

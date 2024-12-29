@@ -295,7 +295,13 @@ export function ProjectManagement() {
                 <TableCell className="font-medium">{project.name}</TableCell>
                 <TableCell>{project.description}</TableCell>
                 <TableCell>{project?.techStack?.join(', ')}</TableCell>
-                <TableCell>{project?.accomplishments?.join(', ')}</TableCell>
+                <TableCell>
+                  {project?.accomplishments?.map((accomplishment, index) => (
+                    <React.Fragment key={index}>
+                      <p>{accomplishment}</p>
+                    </React.Fragment>
+                  ))}
+                </TableCell>
                 <TableCell className="flex gap-x-2 mx-auto">
                   <Button onClick={() => handleEditClick(project)}>
                     <Edit className="mr-2 h-4 w-4" />
