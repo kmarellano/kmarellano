@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Facebook, Mail, Linkedin, AtSign } from 'lucide-react';
+import { Instagram, Mail, Linkedin } from 'lucide-react';
 import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 import {
   Tooltip,
@@ -8,6 +8,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+const SOCIALS = {
+  INSTAGRAM_URL: process.env.INSTAGRAM_URL,
+  PERSONAL_EMAIL: process.env.PERSONAL_EMAIL,
+  LINKEDIN_URL: process.env.LINKEDIN_URL,
+};
 
 export function HeroSection() {
   return (
@@ -28,22 +34,34 @@ export function HeroSection() {
             things, whether online or out in the real world.
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Facebook className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <Mail className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
+            <Link
+              href={SOCIALS.LINKEDIN_URL}
+              className="text-muted-foreground hover:text-primary"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <Linkedin className="w-5 h-5" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <AtSign className="w-5 h-5" />
+            <Link
+              href={SOCIALS.INSTAGRAM_URL}
+              className="text-muted-foreground hover:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram className="w-5 h-5" />
+            </Link>
+            <Link
+              href={`mailto:${SOCIALS.PERSONAL_EMAIL}`}
+              className="text-muted-foreground hover:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Mail className="w-5 h-5" />
             </Link>
           </div>
         </div>
 
-        <div className="relative group h-svh sm:h-[46rem] hover:cursor-grab">
+        <div className="relative group h-[36rem] lg:h-lvh hover:cursor-grab">
           <TooltipProvider delayDuration={250}>
             <Tooltip>
               <TooltipTrigger asChild>

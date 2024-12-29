@@ -7,7 +7,7 @@ import { ThemeChanger } from '@/components/ui/theme-changer';
 export function ThemeProvider({ children, ...props }) {
   return (
     <NextThemesProvider {...props}>
-      <ThemeChanger className="fixed bottom-4 right-4 z-50" />
+      <ThemeChanger />
       {children}
     </NextThemesProvider>
   );

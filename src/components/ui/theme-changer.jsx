@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { COLOR_THEMES } from '@/configs/themes';
+import { COLOR_THEMES } from '@/configs';
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { Palette } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const ThemeChanger = ({ className }) => {
   const { setTheme } = useTheme();
 
   return (
-    <div className={cn('fixed bottom-4 right-4 z-50', className)}>
+    <div className={cn('fixed bottom-4 right-8 z-50', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon" className="bg-muted w-12 h-12">
