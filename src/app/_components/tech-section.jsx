@@ -38,7 +38,7 @@ const SKILLS = [
 
 export function TechnicalSection() {
   return (
-    <SectionWrapper className="bg-muted" id="about">
+    <SectionWrapper className="bg-muted" id="skills">
       <div className="container px-4">
         <div className="space-y-6">
           <h2 className="text-3xl font-bold">Technical Stack</h2>

@@ -72,7 +72,7 @@ export function BlogSection() {
   }, [currentSlide]);
 
   return (
-    <SectionWrapper className="bg-muted min-h-svh" id="blog">
+    <SectionWrapper className="bg-muted min-h-svh" id="blogs">
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold mb-8">Personal Blogs (WIP)</h2>
         <div className="relative overflow-hidden">
