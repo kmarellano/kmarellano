@@ -45,12 +45,12 @@ export function CertificationSection() {
       current === 0 ? certificates?.length - 1 : current - 1
     );
     resetTimer();
-  }, [resetTimer]);
+  }, [certificates, resetTimer]);
 
   const next = useCallback(() => {
     setActiveIndex((current) => (current + 1) % certificates?.length);
     resetTimer();
-  }, [resetTimer]);
+  }, [certificates, resetTimer]);
 
   const handleCardClick = useCallback(
     (index) => {
