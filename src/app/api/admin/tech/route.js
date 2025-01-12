@@ -6,7 +6,7 @@ import { techSchema } from '@/schema';
 
 export async function GET() {
   try {
-    const techs = await getData(Tech);
+    const techs = await getData(Tech, null, null, { name: 1 });
     return NextResponse.json(techs, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

@@ -2,7 +2,7 @@ import { isValidObjectId } from 'mongoose';
 import connectToDatabase from '@/lib/db/mongoose';
 import { auth } from '@clerk/nextjs/server';
 
-export const getData = async (model, populate, query) => {
+export const getData = async (model, populate, query, sort = {}) => {
   await connectToDatabase();
 
   // await auth.protect();
@@ -14,7 +14,8 @@ export const getData = async (model, populate, query) => {
             deletedAt: { $eq: null },
           }
     )
-    .populate(populate);
+    .populate(populate)
+    .sort(sort);
 
   return data;
 };
