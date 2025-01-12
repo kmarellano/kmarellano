@@ -38,7 +38,7 @@ export function CertificationSection() {
       }, 5000);
     }
     return () => clearInterval(timer);
-  }, [autoplay]);
+  }, [certificates, autoplay]);
 
   const prev = useCallback(() => {
     setActiveIndex((current) =>
