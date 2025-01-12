@@ -3,3 +3,4 @@ export * from './tech-section';
 export * from './work-section';
 export * from './blog-section';
 export * from './personal-section';
+export * from './certification-section';

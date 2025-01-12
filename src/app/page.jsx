@@ -5,6 +5,7 @@ import {
   WorkSection,
   BlogSection,
   PersonalSection,
+  CertificationSection,
 } from './_components';
 import { Navigation } from '@/components/ui/navigation';
 
@@ -14,6 +15,7 @@ const About = () => {
       <HeroSection />
       <TechnicalSection />
       <WorkSection />
+      <CertificationSection />
       <BlogSection />
       <PersonalSection />
       <Navigation />
