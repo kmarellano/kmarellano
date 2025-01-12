@@ -34,7 +34,7 @@ export function CertificationSection() {
     let timer;
     if (autoplay) {
       timer = setInterval(() => {
-        setActiveIndex((current) => (current + 1) % certificates.length);
+        setActiveIndex((current) => (current + 1) % certificates?.length);
       }, 5000);
     }
     return () => clearInterval(timer);
@@ -42,13 +42,13 @@ export function CertificationSection() {
 
   const prev = useCallback(() => {
     setActiveIndex((current) =>
-      current === 0 ? certificates.length - 1 : current - 1
+      current === 0 ? certificates?.length - 1 : current - 1
     );
     resetTimer();
   }, [resetTimer]);
 
   const next = useCallback(() => {
-    setActiveIndex((current) => (current + 1) % certificates.length);
+    setActiveIndex((current) => (current + 1) % certificates?.length);
     resetTimer();
   }, [resetTimer]);
 
@@ -61,13 +61,13 @@ export function CertificationSection() {
   );
 
   const getTranslateX = (index) => {
-    const halfLength = Math.floor(certificates.length / 2);
+    const halfLength = Math.floor(certificates?.length / 2);
     const position =
-      (index - activeIndex + certificates.length) % certificates.length;
+      (index - activeIndex + certificates?.length) % certificates?.length;
 
     if (position === 0) return 0;
     if (position <= halfLength) return position * 100;
-    return (position - certificates.length) * 100;
+    return (position - certificates?.length) * 100;
   };
 
   return (
