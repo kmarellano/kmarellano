@@ -142,7 +142,7 @@ export function TechManagement() {
   };
 
   return (
-    <div className="space-y-4 my-8 mx-12 h-svh">
+    <div className="space-y-4 my-8 mx-12">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Techs</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

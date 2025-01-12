@@ -12,10 +12,11 @@ import { Navigation } from '@/components/ui/navigation';
 const About = () => {
   return (
     <main className="min-h-screen bg-white h-screen snap-y snap-mandatory overflow-y-scroll">
+      <CertificationSection />
+
       <HeroSection />
       <TechnicalSection />
       <WorkSection />
-      <CertificationSection />
       <BlogSection />
       <PersonalSection />
       <Navigation />
