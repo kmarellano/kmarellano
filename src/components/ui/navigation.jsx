@@ -10,8 +10,8 @@ import { SOCIALS } from '@/configs';
 const NAV_ITEMS = [
   { href: '#home', label: 'HOME' },
   { href: '#skills', label: 'SKILLS' },
-  { href: '#games', label: 'GAMES' },
   { href: '#personal', label: 'PERSONAL PROJECTS' },
+  { href: '#side', label: 'SIDE PROJECTS' },
 ];
 
 export function Navigation() {
@@ -29,7 +29,7 @@ export function Navigation() {
         <span className="sr-only">Menu</span>
       </Button>
 
-      <div
+      <nav
         className={cn(
           'fixed inset-0 z-40 bg-background transition-transform duration-500 ease-in-out -translate-y-full',
           {
@@ -93,7 +93,7 @@ export function Navigation() {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </React.Fragment>
   );
 }
