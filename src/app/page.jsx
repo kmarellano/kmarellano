@@ -3,7 +3,7 @@ import {
   HeroSection,
   TechnicalSection,
   WorkSection,
-  BlogSection,
+  GameSection,
   PersonalSection,
   CertificationSection,
 } from './_components';
@@ -16,7 +16,7 @@ const About = () => {
       <TechnicalSection />
       <WorkSection />
       <CertificationSection />
-      <BlogSection />
+      <GameSection />
       <PersonalSection />
       <Navigation />
     </main>

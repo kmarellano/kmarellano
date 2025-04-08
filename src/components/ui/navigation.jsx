@@ -10,7 +10,7 @@ import { SOCIALS } from '@/configs';
 const NAV_ITEMS = [
   { href: '#home', label: 'HOME' },
   { href: '#skills', label: 'SKILLS' },
-  { href: '#blogs', label: 'BLOGS' },
+  { href: '#games', label: 'GAMES' },
   { href: '#personal', label: 'PERSONAL PROJECTS' },
 ];
 

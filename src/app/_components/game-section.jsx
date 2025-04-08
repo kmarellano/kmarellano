@@ -14,31 +14,15 @@ import { SectionWrapper } from '@/components/wrapper/section-wrapper';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export function BlogSection() {
+export function GameSection() {
   const blogPosts = [
     {
-      category: 'Technology',
-      title: 'AI: Shaping the Future of How We Live and Work',
+      category: 'Fujiten',
+      title: 'Fujiten: Harvest the Ten',
       description:
-        'Dive into the revolutionary impact of artificial intelligence on our daily lives, transforming everything from communication to productivity.',
-      image: '/placeholder.svg',
-      link: '/blog/ai-in-everyday-life',
-    },
-    {
-      category: 'Beauty',
-      title: 'Redefining Beauty: Finding Perfection in Imperfection',
-      description:
-        'Discover the concept of beauty in embracing imperfections, where true authenticity shines through flaws and uniqueness.',
-      image: '/placeholder.svg',
-      link: '/blog/beauty-in-flaws',
-    },
-    {
-      category: 'Travel',
-      title: 'Off the Beaten Path: Secret Destinations to Discover',
-      description:
-        'Step away from the crowd and explore secret destinations around the world that offer unparalleled adventure and beauty.',
-      image: '/placeholder.svg',
-      link: '/blog/hidden-travel-gems',
+        'Fuji Ten is a fun and intuitive puzzle game where you click and drag apples on a grid to form groups that sum to exactly 10. Think fast, strategize, and master the orchard with various game modes to enjoy!',
+      image: '/fujiten.png',
+      link: process.env.NEXT_PUBLIC_GAMES_URL,
     },
   ];
 
@@ -72,9 +56,9 @@ export function BlogSection() {
   }, [currentSlide]);
 
   return (
-    <SectionWrapper className="min-h-svh" id="blogs">
+    <SectionWrapper className="min-h-svh" id="games">
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-8">Personal Blogs (WIP)</h2>
+        <h2 className="text-3xl font-bold mb-8">Personal Games</h2>
         <div className="relative overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out"
